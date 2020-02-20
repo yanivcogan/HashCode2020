@@ -12,7 +12,7 @@ ALL_FILES = [
 ]
 
 
-def main(solve=lambda l, b: Solution()):
+def main(solve=lambda l, b, n: Solution()):
     print("---START---")
     for filename in ALL_FILES:
         print("solving " + filename)
@@ -31,15 +31,19 @@ def main(solve=lambda l, b: Solution()):
                 book_ids=set(book_ids),
             ))
         t_start = time.time()
-        solution = solve(libraries, book_scores)
+        solution = solve(libraries, book_scores, n_days)
         t_end = time.time()
         print("took " + str(t_end - t_start) + " seconds")
         save_solution(filename, solution)
     print("---END---")
 
 
-def save_solution(file: str, solution: Solution):
-    pass
+def save_solution(filename: str, solution: Solution):
+    lines = [len(solution.library_scans)]
+    for scan in solution.library_scans:
+        lines.append(f"{scan.library.index} {len(scan.ids_in_order)}")
+    with open(filename, "w") as file:
+        file.writelines(lines)
 
 
 if __name__ == '__main__':
