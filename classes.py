@@ -15,6 +15,4 @@ class LibraryScan:
         self.ids_in_order = ids_in_order  # does not have to be all books in library
 
 
-class Solution:
-    def __init__(self, library_scans: List[LibraryScan]):
-        self.library_scans = library_scans
+Solution = List[LibraryScan]

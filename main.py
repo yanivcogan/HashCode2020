@@ -12,7 +12,7 @@ ALL_FILES = [
 ]
 
 
-def main(solve=lambda l, b, n: Solution([])):
+def main(solve=lambda l, b, n: Solution):
     print("---START---")
     for filename in ALL_FILES:
         print("solving " + filename)
@@ -40,8 +40,8 @@ def main(solve=lambda l, b, n: Solution([])):
 
 
 def save_solution(filename: str, solution: Solution):
-    lines = [str(len(solution.library_scans))]
-    for scan in solution.library_scans:
+    lines = [str(len(solution))]
+    for scan in solution:
         lines.append(f"{scan.library.index} {len(scan.ids_in_order)}")
         lines.append(" ".join(str(x) for x in scan.ids_in_order))
     outfilename = filename.replace(".txt", ".out").replace("inputs", "outputs")
@@ -50,11 +50,11 @@ def save_solution(filename: str, solution: Solution):
         file.writelines(lines)
 
 
-# def stupid_solve(libraries, book_scores, n_days):
-#     return Solution([
+# def stupid_solve(libraries, book_scores, n_days) -> Solution:
+#     return [
 #         LibraryScan(libraries[1], [5, 2, 3]),
 #         LibraryScan(libraries[0], [0, 1, 2, 3, 4])
-#     ])
+#     ]
 
 
 if __name__ == '__main__':
