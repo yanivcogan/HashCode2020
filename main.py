@@ -12,7 +12,7 @@ ALL_FILES = [
 ]
 
 
-def main(solve=lambda l, b, n: Solution):
+def main(solve=lambda l, b, n: []):
     print("---START---")
     for filename in ALL_FILES:
         print("solving " + filename)
