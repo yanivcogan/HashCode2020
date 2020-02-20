@@ -2,20 +2,20 @@ from typing import List, Set, Optional
 from classes import Library
 
 
-def pick_library(libraries: List[Library], book_scores: List[int], days_left: int) -> Optional[Library]:
+def pick_library(remaining_libraries: Set[Library], book_scores: List[int], days_left: int) -> Optional[Library]:
     max_intersect_score = 0
-    max_intersect_index = None
-    for i in range(len(libraries)):
-        library = libraries[i]
+    max_intersect_library = None
+    remove_after = set()
+    for library in remaining_libraries:
         if library.signup_time >= days_left:
+            remove_after.add(library)
             continue
         score: int = score_set(book_scores, library.book_ids_remaining)
         if score > max_intersect_score:
-            max_intersect_index = i
+            max_intersect_library = library
             max_intersect_score = score
-    if max_intersect_index is None:
-        return None
-    return libraries[max_intersect_index]
+    remaining_libraries.difference_update(remove_after)  # for optimization
+    return max_intersect_library
 
 
 def score_set(book_scores: List[int], book_ids: Set[int]) -> int:
