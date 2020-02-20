@@ -7,7 +7,7 @@ from solver import greedy
 def main(solve=lambda l, b, n: []):
     print("---START---")
     for filename in ALL_FILES:
-        print("solving " + filename)
+        print("solving " + filename + " ...")
         filename = "inputs/" + filename
         with open(filename) as file:
             lines = file.readlines()

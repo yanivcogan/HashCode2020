@@ -22,7 +22,7 @@ def greedy(libraries: List[Library], book_scores: List[int], days_left: int) -> 
     while days_left >= 0:
         selected_library = pick_library(remaining_libraries, book_scores, days_left)
         if selected_library is None:
-            print(f"ran out of libraries to pick")
+            # print(f"ran out of libraries to pick")
             break
         days_left -= selected_library.signup_time
         selector.add_library(selected_library, days_left)
