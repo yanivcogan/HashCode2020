@@ -1,12 +1,12 @@
-from typing import List, Set
+from typing import List, Set, Optional
 from classes import Library
 
 
-def pick_library(libraries: List[Library], book_scores: List[int], days_left: int, hist: Set[int] = None) -> Library:
+def pick_library(libraries: List[Library], book_scores: List[int], days_left: int, hist: Set[int] = None) -> Optional[Library]:
     if hist is None:
         hist = {}
     max_intersect_score = 0
-    max_intersect_index = 0
+    max_intersect_index = None
     for i in range(len(libraries)):
         library = libraries[i]
         if library.signup_time >= days_left:
@@ -15,6 +15,8 @@ def pick_library(libraries: List[Library], book_scores: List[int], days_left: in
         if score > max_intersect_score:
             max_intersect_index = i
             max_intersect_score = score
+    if max_intersect_index is None:
+        return None
     return libraries[max_intersect_index]
 
 
