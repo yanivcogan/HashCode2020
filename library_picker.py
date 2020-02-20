@@ -10,8 +10,9 @@ def pick_library(remaining_libraries: Set[Library], book_scores: List[int], days
         if library.signup_time >= days_left:
             remove_after.add(library)
             continue
-        score: float = float(score_set(book_scores, library.book_ids_remaining))
-        score /= library.signup_time** 2
+        score: float = float(score_set(book_scores, library.book_ids_remaining)) *\
+                       min(len(library.book_ids_remaining), days_left*library.ship_rate)
+        score /= library.signup_time
         if score > max_intersect_score:
             max_intersect_library = library
             max_intersect_score = score
