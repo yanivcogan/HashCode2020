@@ -30,7 +30,7 @@ def main(solve=lambda l, b, n: []):
         t_end = time.time()
         print("took " + str(t_end - t_start) + " seconds")
         sum_scores = sum(sum(book_scores[b] for b in scan.ids_in_order) for scan in solution)
-        print("SCORE:", sum_scores)
+        # print("SCORE:", sum_scores)
         save_solution(filename, solution, sum_scores)
     print("---END---")
 
@@ -40,11 +40,12 @@ def save_solution(filename: str, solution: Solution, score):
     for scan in solution:
         lines.append(f"{scan.library.index} {len(scan.ids_in_order)}")
         lines.append(" ".join(str(x) for x in scan.ids_in_order))
-    outfilename = filename.replace(".txt", f"{score}.out").replace("inputs", "outputs")
+    outfilename = "outputs/" + filename[7:9] + str(score) + ".out"
     assert outfilename != filename
     with open(outfilename, "w") as file:
         for line in lines:
             file.write(line + "\n")
+    print("-> " + filename[7:9] + str(score))
 
 
 # def stupid_solve(libraries, book_scores, n_days) -> Solution:
