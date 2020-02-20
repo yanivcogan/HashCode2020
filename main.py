@@ -23,8 +23,8 @@ def main(solve=lambda l, b, n: []):
         book_scores = [int(x) for x in lines[1].split(' ')]
         libraries: List[Library] = []
         for i_library in range(n_libraries):
-            line_a = lines[i_library + 2]
-            line_b = lines[i_library + 3]
+            line_a = lines[i_library * 2 + 2]
+            line_b = lines[i_library * 2 + 3]
             _, signup_time, ship_rate = (int(x) for x in line_a.split(' '))
             book_ids = (int(x) for x in line_b.split(' '))
             libraries.append(Library(
