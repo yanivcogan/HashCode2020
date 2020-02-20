@@ -6,7 +6,6 @@ from classes import LibraryScan, Library
 class BookChooser:
     def __init__(self, days: int, scores: List[int]):
         self.scores: List[int] = scores
-        self.days: int = days
         self.scanned_books: Set[int] = set()
         self.library_scans: List[LibraryScan] = []
 
@@ -14,7 +13,6 @@ class BookChooser:
         sorted_books: List[int] = sorted(library.book_ids,
                                          key=lambda i: self.scores[i],
                                          reverse=True)
-        added_books: int = 0
         chosen_books: List[int] = []
         needed_books: int = days_to_scan * library.ship_rate
         for book_id in sorted_books:
@@ -23,8 +21,7 @@ class BookChooser:
             else:
                 chosen_books.append(book_id)
                 self.scanned_books.add(book_id)
-                added_books += 1
-                if added_books >= needed_books:
+                if len(chosen_books) >= needed_books:
                     break
         if len(chosen_books) < needed_books:
             print(f"WARNING: Library {library.index} has {days_to_scan}"
