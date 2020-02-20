@@ -1,3 +1,4 @@
+from typing import Set, List
 
 
 class Library:
@@ -7,5 +8,13 @@ class Library:
         self.ship_rate = ship_rate  # in books per day
         self.book_ids = book_ids
 
+
+class LibraryScan:
+    def __init__(self, library: Library, ids_in_order: List[int]):
+        self.library = library
+        self.ids_in_order = ids_in_order  # does not have to be all books in library
+
+
 class Solution:
-    pass
+    def __init__(self, library_scans: List[LibraryScan]):
+        self.library_scans = library_scans
