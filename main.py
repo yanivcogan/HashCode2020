@@ -1,6 +1,6 @@
-import math
 import time
 from typing import Set, List
+from classes import *
 
 ALL_FILES = [
     "./a_example.in",
@@ -12,15 +12,7 @@ ALL_FILES = [
 ]
 
 
-class Library:
-    def __init__(self, index: int, signup_time: int, ship_rate: int, book_ids: Set[int]):
-        self.index = index
-        self.signup_time = signup_time
-        self.ship_rate = ship_rate  # in books per day
-        self.book_ids = book_ids
-
-
-def main(solve=lambda l, b: ""):
+def main(solve=lambda l, b: Solution()):
     print("---START---")
     for filename in ALL_FILES:
         print("solving " + filename)
@@ -46,7 +38,7 @@ def main(solve=lambda l, b: ""):
     print("---END---")
 
 
-def save_solution(file: str, solution):
+def save_solution(file: str, solution: Solution):
     pass
 
 
