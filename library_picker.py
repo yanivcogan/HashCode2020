@@ -2,6 +2,7 @@ import math
 from typing import List, Set, Optional
 from classes import Library
 
+
 def pick_library(remaining_libraries: Set[Library], book_scores: List[int], days_left: int) -> Optional[Library]:
     max_intersect_score = -math.inf
     max_intersect_library = None
