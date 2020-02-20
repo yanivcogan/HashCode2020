@@ -11,8 +11,7 @@ def pick_library(remaining_libraries: Set[Library], book_scores: List[int], days
         if library.signup_time >= days_left:
             remove_after.add(library)
             continue
-        score: float = float(score_set(book_scores, library.book_ids_remaining)) *\
-                       min(len(library.book_ids_remaining), days_left*library.ship_rate)
+        score: float = float(score_set(book_scores, library.book_ids_remaining, days_left, library.ship_rate, library.signup_time))
         score /= library.signup_time
         if score > max_intersect_score:
             max_intersect_library = library
@@ -21,5 +20,10 @@ def pick_library(remaining_libraries: Set[Library], book_scores: List[int], days
     return max_intersect_library
 
 
-def score_set(book_scores: List[int], book_ids: Set[int]) -> int:
-    return sum(book_scores[i] for i in book_ids)
+def score_set(book_scores: List[int], book_ids: Set[int], days_left: int, ship_rate: int, signup_time) -> int:
+    ordered = sorted(book_ids, key=lambda book: book_scores[book], reverse=True)
+    if len(ordered) == 0:
+        return 0
+    max_book = min(len(ordered) - 1, (days_left - signup_time) * ship_rate)
+    ordered = ordered[0:max_book]
+    return sum(book_scores[i] for i in ordered)
