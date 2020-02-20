@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Set
 
 from classes import LibraryScan, Library
 
@@ -7,7 +7,7 @@ class BookChooser:
     def __init__(self, days: int, scores: List[int]):
         self.scores: List[int] = scores
         self.days: int = days
-        self.scanned_books: set = set()
+        self.scanned_books: Set[int] = set()
         self.library_scans: List[LibraryScan] = []
 
     def add_library(self, library: Library, days_to_scan: int) -> None:
