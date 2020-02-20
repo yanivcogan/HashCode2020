@@ -9,14 +9,14 @@ def greedy(libraries: List[Library], book_scores: List[int], days_left: int) -> 
     # optimization:
     # instead of working with a hist set that is constantly being intersected,
     # each library remembers set of remaining book ids
-    # when picking a library, only update remaining book ids for other libraries that share those books
+    # when picking a library, only update remaining book ids
+    #   for other libraries that share those books
     libraries_by_book: Dict[int, List[Library]] = {i: [] for i in range(len(book_scores))}
     for library in libraries:
         for book_id in library.book_ids:
             libraries_by_book[book_id].append(library)
 
     selector = BookChooser(days_left, book_scores)
-    print(f"days left: {days_left}")
     selected_indices = set()
     while days_left >= 0:
         selected_library = pick_library(libraries, book_scores, days_left)
@@ -31,7 +31,4 @@ def greedy(libraries: List[Library], book_scores: List[int], days_left: int) -> 
         for book_id in selected_library.book_ids_remaining.copy():
             for library in libraries_by_book[book_id]:
                 library.book_ids_remaining.remove(book_id)
-        print(f"picked {selected_library.index}. days left: {days_left}")
     return selector.get_scans()
-
-
