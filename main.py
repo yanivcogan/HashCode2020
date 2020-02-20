@@ -31,16 +31,16 @@ def main(solve=lambda l, b, n: []):
         print("took " + str(t_end - t_start) + " seconds")
         sum_scores = sum(sum(book_scores[b] for b in scan.ids_in_order) for scan in solution)
         print("SCORE:", sum_scores)
-        save_solution(filename, solution)
+        save_solution(filename, solution, sum_scores)
     print("---END---")
 
 
-def save_solution(filename: str, solution: Solution):
+def save_solution(filename: str, solution: Solution, score):
     lines = [str(len(solution))]
     for scan in solution:
         lines.append(f"{scan.library.index} {len(scan.ids_in_order)}")
         lines.append(" ".join(str(x) for x in scan.ids_in_order))
-    outfilename = filename.replace(".txt", ".out").replace("inputs", "outputs")
+    outfilename = filename.replace(".txt", f"{score}.out").replace("inputs", "outputs")
     assert outfilename != filename
     with open(outfilename, "w") as file:
         for line in lines:

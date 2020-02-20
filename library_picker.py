@@ -7,16 +7,12 @@ def pick_library(libraries: List[Library], book_scores: List[int], days_left: in
     max_intersect_score = -math.inf
     max_intersect_index = None
     remaining_ids = set()
-    for library in libraries:
-        for book_id in library.book_ids_remaining:
-            remaining_ids.add(book_id)
-    average_score = score_set(book_scores, remaining_ids)
     for i in range(len(libraries)):
         library = libraries[i]
         if library.signup_time >= days_left:
             continue
-        score: int = score_set(book_scores, library.book_ids_remaining)
-        score -= average_score * library.signup_time
+        score: float = float(score_set(book_scores, library.book_ids_remaining))
+        score /= library.signup_time** 2
         if score > max_intersect_score:
             max_intersect_index = i
             max_intersect_score = score
