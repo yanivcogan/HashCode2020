@@ -11,7 +11,7 @@ def pick_library(libraries: List[Library], book_scores: List[int], days_left: in
         library = libraries[i]
         if library.signup_time >= days_left:
             continue
-        score: int = score_set(book_scores, hist.difference(library.book_ids.intersection(hist)))
+        score: int = score_set(book_scores, library.book_ids.difference(hist))
         if score > max_intersect_score:
             max_intersect_index = i
             max_intersect_score = score
