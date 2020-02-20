@@ -3,19 +3,20 @@ from typing import Set, List
 from classes import *
 
 ALL_FILES = [
-    "./a_example.in",
-    "./b_read_on.in",
-    "./c_incunabula.in",
-    "./d_tough_choices.in",
-    "./e_so_many_books.in",
-    "./f_libraries_of_the_world.in",
+    "a_example.txt",
+    "b_read_on.txt",
+    "c_incunabula.txt",
+    "d_tough_choices.txt",
+    "e_so_many_books.txt",
+    "f_libraries_of_the_world.txt",
 ]
 
 
-def main(solve=lambda l, b, n: Solution()):
+def main(solve=lambda l, b, n: Solution([])):
     print("---START---")
     for filename in ALL_FILES:
         print("solving " + filename)
+        filename = "inputs/" + filename
         with open(filename) as file:
             lines = file.readlines()
         n_books, n_libraries, n_days = (int(x) for x in lines[0].split(' '))
@@ -39,11 +40,21 @@ def main(solve=lambda l, b, n: Solution()):
 
 
 def save_solution(filename: str, solution: Solution):
-    lines = [len(solution.library_scans)]
+    lines = [str(len(solution.library_scans))]
     for scan in solution.library_scans:
         lines.append(f"{scan.library.index} {len(scan.ids_in_order)}")
-    with open(filename, "w") as file:
+        lines.append(" ".join(str(x) for x in scan.ids_in_order))
+    outfilename = filename.replace(".txt", ".out").replace("inputs", "outputs")
+    assert outfilename != filename
+    with open(outfilename, "w") as file:
         file.writelines(lines)
+
+
+# def stupid_solve(libraries, book_scores, n_days):
+#     return Solution([
+#         LibraryScan(libraries[1], [5, 2, 3]),
+#         LibraryScan(libraries[0], [0, 1, 2, 3, 4])
+#     ])
 
 
 if __name__ == '__main__':
