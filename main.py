@@ -29,6 +29,8 @@ def main(solve=lambda l, b, n: []):
         solution = solve(libraries, book_scores, n_days)
         t_end = time.time()
         print("took " + str(t_end - t_start) + " seconds")
+        sum_scores = sum(sum(book_scores[b] for b in scan.ids_in_order) for scan in solution)
+        print("SCORE:", sum_scores)
         save_solution(filename, solution)
     print("---END---")
 

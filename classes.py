@@ -7,6 +7,7 @@ class Library:
         self.signup_time = signup_time
         self.ship_rate = ship_rate  # in books per day
         self.book_ids = book_ids
+        self.book_ids_remaining = book_ids.copy()  # for algorithm
 
 
 class LibraryScan:
