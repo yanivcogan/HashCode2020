@@ -20,11 +20,13 @@ def main(solve=lambda l, b, n: []):
         with open(filename) as file:
             lines = file.readlines()
         n_books, n_libraries, n_days = (int(x) for x in lines[0].split(' '))
-        book_scores = [int(x) for x in lines[0].split(' ')]
+        book_scores = [int(x) for x in lines[1].split(' ')]
         libraries: List[Library] = []
         for i_library in range(n_libraries):
-            _, signup_time, ship_rate = (int(x) for x in lines[0].split(' '))
-            book_ids = (int(x) for x in lines[0].split(' '))
+            line_a = lines[i_library + 2]
+            line_b = lines[i_library + 3]
+            _, signup_time, ship_rate = (int(x) for x in line_a.split(' '))
+            book_ids = (int(x) for x in line_b.split(' '))
             libraries.append(Library(
                 index=i_library,
                 signup_time=signup_time,
