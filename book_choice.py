@@ -11,7 +11,8 @@ class BookChooser:
         self.library_scans: List[LibraryScan] = []
 
     def add_library(self, library: Library, days_to_scan: int) -> None:
-        sorted_books: List[int] = sorted(library.book_ids, key=lambda book_id: self.scores[book_id],
+        sorted_books: List[int] = sorted(library.book_ids,
+                                         key=lambda i: self.scores[i],
                                          reverse=True)
         added_books: int = 0
         chosen_books: List[int] = []
@@ -26,8 +27,8 @@ class BookChooser:
                 if added_books >= needed_books:
                     break
         if len(chosen_books) < needed_books:
-            print(
-                f"WARNING: Library {library.index} has {days_to_scan} days but scanned {len(chosen_books)} books")
+            print(f"WARNING: Library {library.index} has {days_to_scan}"
+                  f" days but scanned {len(chosen_books)} books")
         self.library_scans.append(LibraryScan(library, chosen_books))
 
     def get_scans(self) -> List[LibraryScan]:
