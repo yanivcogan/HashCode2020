@@ -24,9 +24,6 @@ class BookChooser:
                 self.scanned_books.add(book_id)
                 if len(chosen_books) >= needed_books:
                     break
-        if len(chosen_books) < needed_books:
-            print(f"WARNING: Library {library.index} has {days_to_scan}"
-                  f" days but scanned {len(chosen_books)} books")
         self.library_scans.append(LibraryScan(library, chosen_books))
 
     def get_scans(self) -> List[LibraryScan]:
