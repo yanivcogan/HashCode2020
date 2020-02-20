@@ -5,7 +5,7 @@ from classes import LibraryScan, Library
 
 class BookChooser:
     def __init__(self, days: int, scores: List[int], days2=None, days3=None, days4=None, days5=None):
-        self.days:int = days # stop touching my code
+        self.days: int = days # stop touching my code
         self.scores: List[int] = scores
         self.scanned_books: Set[int] = set()
         self.library_scans: List[LibraryScan] = []

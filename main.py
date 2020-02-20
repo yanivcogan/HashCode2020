@@ -1,6 +1,6 @@
 import time
-from typing import Set, List
 from classes import *
+from solver import greedy
 
 ALL_FILES = [
     "a_example.txt",
@@ -20,7 +20,7 @@ def main(solve=lambda l, b, n: []):
         with open(filename) as file:
             lines = file.readlines()
         n_books, n_libraries, n_days = (int(x) for x in lines[0].split(' '))
-        book_scores = (int(x) for x in lines[0].split(' '))
+        book_scores = [int(x) for x in lines[0].split(' ')]
         libraries: List[Library] = []
         for i_library in range(n_libraries):
             _, signup_time, ship_rate = (int(x) for x in lines[0].split(' '))
@@ -58,4 +58,4 @@ def save_solution(filename: str, solution: Solution):
 
 
 if __name__ == '__main__':
-    main()
+    main(greedy)
