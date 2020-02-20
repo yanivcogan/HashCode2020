@@ -49,7 +49,8 @@ def save_solution(filename: str, solution: Solution):
     outfilename = filename.replace(".txt", ".out").replace("inputs", "outputs")
     assert outfilename != filename
     with open(outfilename, "w") as file:
-        file.writelines(lines)
+        for line in lines:
+            file.write(line + "\n")
 
 
 # def stupid_solve(libraries, book_scores, n_days) -> Solution:
