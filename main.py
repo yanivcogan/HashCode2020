@@ -5,15 +5,17 @@ from solver import greedy
 
 
 def main(solve=lambda l, b, n: []):
+    print("Hello 3")
     print("---START---")
     for filename in ALL_FILES:
         print("solving " + filename + " ...")
-        filename = "inputs/" + filename
+        filename = "inputs_new/" + filename
         with open(filename) as file:
             lines = file.readlines()
-        n_books, n_libraries, n_days = (int(x) for x in lines[0].split(' '))
+        n_books, n_libraries, n_days = (int(x) if x else 'asdf' for x in lines[0].split(' '))
         book_scores = [int(x) for x in lines[1].split(' ')]
         libraries: List[Library] = []
+        print("Hello 23423432")
         for i_library in range(n_libraries):
             line_a = lines[i_library * 2 + 2]
             line_b = lines[i_library * 2 + 3]
