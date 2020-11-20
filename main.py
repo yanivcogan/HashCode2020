@@ -5,7 +5,7 @@ from solver import greedy
 
 
 def main(solve=lambda l, b, n: []):
-    print("Hello 3")
+    print("Hello 23")
     print("---START---")
     for filename in ALL_FILES:
         print("solving " + filename + " ...")
@@ -22,7 +22,6 @@ def main(solve=lambda l, b, n: []):
             _, signup_time, ship_rate = (int(x) for x in line_a.split(' '))
             book_ids = (int(x) for x in line_b.split(' '))
             libraries.append(Library(
-                bad_thing,
                 index=i_library,
                 signup_time=signup_time,
                 ship_rate=ship_rate,
