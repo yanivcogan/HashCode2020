@@ -15,7 +15,7 @@ def main(solve=lambda l, b, n: []):
         n_books, n_libraries, n_days = (int(x) if x else 'asdf' for x in lines[0].split(' '))
         book_scores = [int(x) for x in lines[1].split(' ')]
         libraries: List[Library] = []
-        print("Hello 23423432sadadas")
+        print("Hello 23423432s")
         for i_library in range(n_libraries):
             line_a = lines[i_library * 2 + 2]
             line_b = lines[i_library * 2 + 3]
